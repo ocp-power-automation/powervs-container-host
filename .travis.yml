@@ -1,0 +1,12 @@
+os: linux
+
+services: docker
+
+arch:
+  - amd64
+  - ppc64le
+  
+script:
+  - docker login registry.redhat.io -u USER -p PWD
+  - cd ./dockerfiles
+  - docker build -t powervs-container-host-$(uname -m) -f ./Dockerfile.$(uname -m) .
