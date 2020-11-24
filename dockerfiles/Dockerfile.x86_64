@@ -1,0 +1,20 @@
+# Please login to the Red Hat Registry using your Customer Portal credentials.
+# docker login registry.redhat.io
+# https://access.redhat.com/RegistryAuthentication
+
+FROM registry.redhat.io/ubi8/ubi-minimal:latest
+
+ARG IBM_CLOUD_VERSION=1.2.3
+ARG ARCH=amd64
+
+# Install basic packages, ibmcloud, power-iaas and terraform
+RUN microdnf update && \
+    microdnf install -y git wget tar unzip yum-utils && \
+    wget https://download.clis.cloud.ibm.com/ibm-cloud-cli/"$IBM_CLOUD_VERSION"/IBM_Cloud_CLI_"$IBM_CLOUD_VERSION"_"$ARCH".tar.gz && \
+    tar -xvzf ./IBM_Cloud_CLI_"$IBM_CLOUD_VERSION"_"$ARCH".tar.gz && \
+    chmod +x ./Bluemix_CLI/install && ./Bluemix_CLI/install && \
+    ibmcloud update && \
+    rm -rf ./Bluemix_CLI/ ./IBM_Cloud_CLI_"$IBM_CLOUD_VERSION"_"$ARCH".tar.gz && \
+    ibmcloud plugin install power-iaas && \
+    yum-config-manager --add-repo https://rpm.releases.hashicorp.com/RHEL/hashicorp.repo && microdnf update && microdnf install -y terraform && \
+    terraform --version && ibmcloud --version
