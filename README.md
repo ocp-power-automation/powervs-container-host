@@ -7,7 +7,9 @@ Dockerfiles to build containers from where you can run Terraform automation to i
 ```
   docker login registry.redhat.io (https://access.redhat.com/RegistryAuthentication)
 
-  (x86_64)  docker build -t powervs-container-host-$(uname -m) -f ./dockerfile/Dockerfile.x86_64 .
+  cd ./dockerfiles
 
-  (ppc64le) docker build -t powervs-container-host-$(uname -m) -f ./dockerfile/Dockerfile.ppc64le .
+  (x86_64)  docker build -t powervs-container-host-$(uname -m) -f ./Dockerfile.x86_64 .
+
+  (ppc64le) docker build -t powervs-container-host-$(uname -m) -f ./Dockerfile.ppc64le .
 ```
