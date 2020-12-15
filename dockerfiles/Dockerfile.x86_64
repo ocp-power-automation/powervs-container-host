@@ -2,7 +2,7 @@
 # docker login registry.redhat.io
 # https://access.redhat.com/RegistryAuthentication
 
-FROM registry.access.redhat.com/ubi8/ubi:latest
+FROM registry.access.redhat.com/ubi8/ubi-minimal:latest
 
 ARG IBM_CLOUD_VERSION=1.2.3
 ARG ARCH=amd64
