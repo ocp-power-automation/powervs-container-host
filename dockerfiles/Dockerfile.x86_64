@@ -6,6 +6,7 @@ FROM registry.access.redhat.com/ubi8/ubi-minimal:latest
 
 ARG IBM_CLOUD_VERSION=1.2.3
 ARG ARCH=amd64
+TERRAFORM_VERSION=terraform-0.13.5-1.x86_64
 
 # Install basic packages, ibmcloud, power-iaas and terraform
 RUN microdnf update && \
@@ -16,5 +17,5 @@ RUN microdnf update && \
     ibmcloud update && \
     rm -rf ./Bluemix_CLI/ ./IBM_Cloud_CLI_"$IBM_CLOUD_VERSION"_"$ARCH".tar.gz && \
     ibmcloud plugin install power-iaas && \
-    yum-config-manager --add-repo https://rpm.releases.hashicorp.com/RHEL/hashicorp.repo && microdnf update && microdnf install -y terraform_0.13.5 && \
+    yum-config-manager --add-repo https://rpm.releases.hashicorp.com/RHEL/hashicorp.repo && microdnf update && microdnf install -y "$TERRAFORM_VERSION" && \
     terraform --version && ibmcloud --version
