@@ -4,16 +4,20 @@ dist: bionic
 
 services: docker
 
-arch:
-  - amd64
-  - ppc64le
-  
-script:
-  - docker login registry.redhat.io -u $USER -p $PWD
-  - cd ./dockerfiles
-  - docker build -t powervs-container-host-$(uname -m) -f ./Dockerfile.$(uname -m) .
-
-after_success:
-  - docker login quay.io -u $USER_QUAY -p $PWD_QUAY
-  - docker tag powervs-container-host-$(uname -m) quay.io/powercloud/powervs-container-host:container-host-$(uname -m)
-  - docker push quay.io/powercloud/powervs-container-host:container-host-$(uname -m)
+jobs:
+  include:
+    - stage: building ppc64le image
+      arch: ppc64le
+      script:
+        - docker login registry.redhat.io -u $USER -p $PWD
+        - cd ./dockerfiles
+        - docker build -t powervs-container-host-$(uname -m) -f ./Dockerfile.$(uname -m) .
+    - stage: building x86_64 image
+      arch: amd64
+      script:
+        - docker login registry.redhat.io -u $USER -p $PWD
+        - cd ./dockerfiles
+        - docker build -t powervs-container-host-$(uname -m) -f ./Dockerfile.$(uname -m) .
+    - stage: building multi-arch image
+      arch: ppc64le
+      script: chmod +x ./scripts/create-multi-arch.sh; ./scripts/create-multi-arch.sh
