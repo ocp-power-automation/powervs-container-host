@@ -1,7 +1,3 @@
-# Please login to the Red Hat Registry using your Customer Portal credentials.
-# docker login registry.redhat.io
-# https://access.redhat.com/RegistryAuthentication
-
 FROM registry.redhat.io/ubi8/ubi-minimal:latest
 
 ARG IBMCLOUD_VERSION=1.2.3
