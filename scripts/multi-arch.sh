@@ -9,4 +9,4 @@ quay.io/powercloud/powervs-container-host:container-host-x86_64 quay.io/powerclo
 
 docker login quay.io -u $USER_QUAY -p $PWD_QUAY
 
-docker manifest push quay.io/powercloud/powervs-container-host:latest
+docker manifest push quay.io/powercloud/powervs-container-host:ocp-4.6
