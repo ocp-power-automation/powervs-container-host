@@ -1,5 +1,7 @@
 os: linux
 
+language: bash
+
 dist: bionic
 
 services: docker
