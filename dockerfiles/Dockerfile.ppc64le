@@ -10,6 +10,12 @@ LABEL tf_version="$TERRAFORM"
 LABEL tf_ppc64le_provider_version="$TF_PPC64LE_PROVIDERS"
 LABEL ibmcloud_version="$IBMCLOUD_VERSION"
 
+COPY /files/terraformrc.ppc64le  /root/.terraformrc
+ADD /files/terraformrc.ppc64le  /root/.terraformrc
+
+COPY /files/terraformrc.ppc64le  /root/.terraformrc.ppc64le
+ADD /files/terraformrc.ppc64le  /root/.terraformrc.ppc64le
+
 # Install basic packages, ibmcloud, power-iaas and terraform
 RUN microdnf update && \
     microdnf install -y git vi wget tar unzip yum-utils iputils && \
@@ -25,5 +31,3 @@ RUN microdnf update && \
     wget https://github.com/ocp-power-automation/terraform-providers-power/releases/download/$TF_PPC64LE_PROVIDERS/archive.zip && \
     unzip ./archive.zip -d /root/.terraform.d/plugins && \
     terraform --version && ibmcloud --version 
-
-COPY /files/terraformrc.ppc64le  /root/.terraformrc
