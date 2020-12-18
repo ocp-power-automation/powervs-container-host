@@ -11,15 +11,15 @@ jobs:
       script:
         - docker login registry.redhat.io -u $USER -p $PWD
         - cd ./dockerfiles
-        - docker build -t powervs-container-host-$(uname -m) -f ./Dockerfile.$(uname -m) .
-        - docker push quay.io/powercloud/powervs-container-host:container-host-ppc64le
+        - docker build -t quay.io/powercloud/powervs-container-host:container-host-$(uname -m) -f ./Dockerfile.$(uname -m) .
+        - docker push quay.io/powercloud/powervs-container-host:container-host-$(uname -m)
     - stage: building x86_64 image
       arch: amd64
       script:
         - docker login registry.redhat.io -u $USER -p $PWD
         - cd ./dockerfiles
-        - docker build -t powervs-container-host-$(uname -m) -f ./Dockerfile.$(uname -m) .
-        - docker push quay.io/powercloud/powervs-container-host:container-host-x86_64
+        - docker build -t quay.io/powercloud/powervs-container-host:container-host-$(uname -m) -f ./Dockerfile.$(uname -m) .
+        - docker push quay.io/powercloud/powervs-container-host:container-host-$(uname -m)
     - stage: building multi-arch image
       arch: ppc64le
       script: chmod +x ./scripts/multi-arch.sh; ./scripts/multi-arch.sh
