@@ -1,8 +1,14 @@
 FROM registry.redhat.io/ubi8/ubi-minimal:latest
 
-ARG IBMCLOUD_VERSION=1.2.3
+ARG IBMCLOUD_VERSION=1.3.0
 ARG ARCH=ppc64le
 ARG TERRAFORM=0.13.5
+ARG TF_PPC64LE_PROVIDERS=v0.7
+
+LABEL maintaner="Rafael Peria de Sene - rpsene@br.ibm.com "
+LABEL tf_version="$TERRAFORM"
+LABEL tf_ppc64le_provider_version="$TF_PPC64LE_PROVIDERS"
+LABEL ibmcloud_version="$IBMCLOUD_VERSION"
 
 # Install basic packages, ibmcloud, power-iaas and terraform
 RUN microdnf update && \
@@ -10,8 +16,14 @@ RUN microdnf update && \
     wget https://download.clis.cloud.ibm.com/ibm-cloud-cli/"$IBMCLOUD_VERSION"/IBM_Cloud_CLI_"$IBMCLOUD_VERSION"_"$ARCH".tar.gz && \
     tar -xvzf ./IBM_Cloud_CLI_"$IBMCLOUD_VERSION"_"$ARCH".tar.gz && \
     chmod +x ./Bluemix_CLI/install && ./Bluemix_CLI/install && \
-    ibmcloud update && \
+    ibmcloud update --force && \
     rm -rf ./Bluemix_CLI/ ./IBM_Cloud_CLI_"$IBMCLOUD_VERSION"_"$ARCH".tar.gz && \
     ibmcloud plugin install power-iaas && \
     wget -O /usr/bin/terraform https://oplab9.parqtec.unicamp.br/pub/ppc64el/terraform/terraform-"$TERRAFORM" && \
-    chmod +x /usr/bin/terraform && terraform --version && ibmcloud --version
+    chmod +x /usr/bin/terraform && \
+    mkdir -p /root/.terraform.d/plugins && \
+    wget https://github.com/ocp-power-automation/terraform-providers-power/releases/download/$TF_PPC64LE_PROVIDERS/archive.zip && \
+    unzip ./archive.zip -d /root/.terraform.d/plugins && \
+    terraform --version && ibmcloud --version 
+
+COPY /files/terraformrc.ppc64le  /root/.terraformrc
