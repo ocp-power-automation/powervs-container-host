@@ -1,6 +1,6 @@
 # powervs-container-host
 
-Dockerfiles to build containers from where you can run Terraform automation to install OpenShit at IBM Cloud on PowerVS.
+Builds multi-arch containers from where you can run Terraform automation to install OpenShit at IBM Cloud on PowerVS.
 
 # Building the images
 
