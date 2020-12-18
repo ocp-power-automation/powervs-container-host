@@ -9,14 +9,14 @@ jobs:
     - stage: building ppc64le image
       arch: ppc64le
       script:
-        - docker login registry.redhat.io -u $USER -p $PWD
+        - docker login quay.io -u $USER -p $PWD
         - cd ./dockerfiles
         - docker build -t quay.io/powercloud/powervs-container-host:container-host-$(uname -m) -f ./Dockerfile.$(uname -m) .
         - docker push quay.io/powercloud/powervs-container-host:container-host-$(uname -m)
     - stage: building x86_64 image
       arch: amd64
       script:
-        - docker login registry.redhat.io -u $USER -p $PWD
+        - docker login quay.io -u $USER -p $PWD
         - cd ./dockerfiles
         - docker build -t quay.io/powercloud/powervs-container-host:container-host-$(uname -m) -f ./Dockerfile.$(uname -m) .
         - docker push quay.io/powercloud/powervs-container-host:container-host-$(uname -m)
