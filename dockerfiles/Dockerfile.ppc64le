@@ -12,6 +12,8 @@ LABEL ibmcloud_version="$IBMCLOUD_VERSION"
 
 COPY /files/terraformrc.ppc64le  /root/.terraformrc
 
+RUN > /etc/resolv.conf && echo "nameserver 1.1.1.1" >> /etc/resolv.conf
+
 # Install basic packages, ibmcloud, power-iaas and terraform
 RUN microdnf update && \
     microdnf install -y git vi wget tar unzip yum-utils iputils && \
