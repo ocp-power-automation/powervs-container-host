@@ -1,6 +1,6 @@
 # powervs-container-host
 
-Builds multi-arch containers from where you can run Terraform automation to install OpenShit at IBM Cloud on PowerVS.
+Multi-arch container images from where you can run the [automation to install OpenShit at IBM Cloud on PowerVS](https://github.com/ocp-power-automation/ocp4-upi-powervs).
 
 # Pulling Images
 
