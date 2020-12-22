@@ -12,16 +12,16 @@ jobs:
       arch: ppc64le
       script:
         - cd ./dockerfiles
-        - docker build --dns 1.1.1.1 -t quay.io/powercloud/powervs-container-host:container-host-$(uname -m) -f ./Dockerfile.$(uname -m) .
+        - docker build -t quay.io/powercloud/powervs-container-host:container-host-$(uname -m) -f ./Dockerfile.$(uname -m) .
         - docker login quay.io -u $USER_QUAY -p $PWD_QUAY
-        - docker push  --dns 1.1.1.1 quay.io/powercloud/powervs-container-host:container-host-$(uname -m)
+        - docker push quay.io/powercloud/powervs-container-host:container-host-$(uname -m)
     - stage: building x86_64 image
       arch: amd64
       script:
         - cd ./dockerfiles
-        - docker build --dns 1.1.1.1 -t quay.io/powercloud/powervs-container-host:container-host-$(uname -m) -f ./Dockerfile.$(uname -m) .
+        - docker build -t quay.io/powercloud/powervs-container-host:container-host-$(uname -m) -f ./Dockerfile.$(uname -m) .
         - docker login quay.io -u $USER_QUAY -p $PWD_QUAY
-        - docker push --dns 1.1.1.1 quay.io/powercloud/powervs-container-host:container-host-$(uname -m)
+        - docker push quay.io/powercloud/powervs-container-host:container-host-$(uname -m)
     - stage: building multi-arch image
       arch: ppc64le
       script: chmod +x ./scripts/multi-arch.sh; ./scripts/multi-arch.sh
