@@ -16,7 +16,7 @@ RUN > /etc/resolv.conf && echo "nameserver 1.1.1.1" >> /etc/resolv.conf
 
 # Install basic packages, ibmcloud, power-iaas and terraform
 RUN microdnf update && \
-    microdnf install -y git vi wget tar unzip yum-utils iputils && \
+    microdnf install -y git vi wget tar unzip yum-utils iputils jq && \
     wget https://download.clis.cloud.ibm.com/ibm-cloud-cli/"$IBMCLOUD_VERSION"/IBM_Cloud_CLI_"$IBMCLOUD_VERSION"_"$ARCH".tar.gz && \
     tar -xvzf ./IBM_Cloud_CLI_"$IBMCLOUD_VERSION"_"$ARCH".tar.gz && \
     chmod +x ./Bluemix_CLI/install && ./Bluemix_CLI/install && \
