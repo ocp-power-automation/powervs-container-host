@@ -1,7 +1,6 @@
-#!/bin/bash
+#!/usr/bin/env bash
 
 export DOCKER_CLI_EXPERIMENTAL=enabled
-
 OCP_VERSION=ocp-4.5
 
 docker manifest create quay.io/powercloud/powervs-container-host:$OCP_VERSION \
