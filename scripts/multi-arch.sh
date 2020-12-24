@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env bash
 
 export DOCKER_CLI_EXPERIMENTAL=enabled
 OCP_VERSION=ocp-4.6
