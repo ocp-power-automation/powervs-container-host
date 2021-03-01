@@ -14,7 +14,7 @@ RUN microdnf update && \
     wget https://download.clis.cloud.ibm.com/ibm-cloud-cli/"$IBM_CLOUD_VERSION"/IBM_Cloud_CLI_"$IBM_CLOUD_VERSION"_"$ARCH".tar.gz && \
     tar -xvzf ./IBM_Cloud_CLI_"$IBM_CLOUD_VERSION"_"$ARCH".tar.gz && \
     chmod +x ./Bluemix_CLI/install && ./Bluemix_CLI/install && \
-    ibmcloud update && \
+    ibmcloud update --force && \
     rm -rf ./Bluemix_CLI/ ./IBM_Cloud_CLI_"$IBM_CLOUD_VERSION"_"$ARCH".tar.gz && \
     ibmcloud plugin install power-iaas && \
     yum-config-manager --add-repo https://rpm.releases.hashicorp.com/RHEL/hashicorp.repo && microdnf update && microdnf install -y "$TERRAFORM_VERSION" && \
