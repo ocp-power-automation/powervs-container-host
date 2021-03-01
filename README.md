@@ -12,6 +12,8 @@ docker or podman pull quay.io/powercloud/powervs-container-host:latest
 docker or podman pull quay.io/powercloud/powervs-container-host:ocp-4.5
 
 docker or podman pull quay.io/powercloud/powervs-container-host:ocp-4.6
+
+docker or podman pull quay.io/powercloud/powervs-container-host:ocp-4.7
 ```
 
 # Building the images
