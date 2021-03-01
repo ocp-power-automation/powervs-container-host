@@ -14,14 +14,14 @@ jobs:
         - cd ./dockerfiles
         - docker build -t quay.io/powercloud/powervs-container-host:container-host-$OCP_VERSION-$(uname -m) -f ./Dockerfile.$(uname -m) .
         - docker login quay.io -u $USER_QUAY -p $PWD_QUAY
-        - quay.io/powercloud/powervs-container-host:container-host-$OCP_VERSION-$(uname -m)
+        - docker push quay.io/powercloud/powervs-container-host:container-host-$OCP_VERSION-$(uname -m)
     - stage: building x86_64 container image
       arch: amd64
       script:
         - cd ./dockerfiles
         - docker build -t quay.io/powercloud/powervs-container-host:container-host-$OCP_VERSION-$(uname -m) -f ./Dockerfile.$(uname -m) .
         - docker login quay.io -u $USER_QUAY -p $PWD_QUAY
-        - quay.io/powercloud/powervs-container-host:container-host-$OCP_VERSION-$(uname -m)
+        - docker push quay.io/powercloud/powervs-container-host:container-host-$OCP_VERSION-$(uname -m)
     - stage: building multi-arch container image
       arch: ppc64le
       script: chmod +x ./scripts/multi-arch.sh; ./scripts/multi-arch.sh
