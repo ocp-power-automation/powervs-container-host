@@ -1,6 +1,6 @@
 FROM registry.access.redhat.com/ubi8/ubi-minimal:latest
 
-ARG IBM_CLOUD_VERSION=1.3.0
+ARG IBM_CLOUD_VERSION=1.4.0
 ARG ARCH=amd64
 ARG TERRAFORM_VERSION=terraform-0.13.6-1.x86_64
 
