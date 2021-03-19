@@ -10,7 +10,7 @@ LABEL ibmcloud_version="$IBMCLOUD_VERSION"
 
 # Install basic packages, ibmcloud, power-iaas and terraform
 RUN microdnf update && \
-    microdnf install -y git wget tar unzip yum-utils vi iputils jq && \
+    microdnf install -y git wget tar unzip yum-utils vi iputils jq findutils && \
     wget https://download.clis.cloud.ibm.com/ibm-cloud-cli/"$IBM_CLOUD_VERSION"/IBM_Cloud_CLI_"$IBM_CLOUD_VERSION"_"$ARCH".tar.gz && \
     tar -xvzf ./IBM_Cloud_CLI_"$IBM_CLOUD_VERSION"_"$ARCH".tar.gz && \
     chmod +x ./Bluemix_CLI/install && ./Bluemix_CLI/install && \
