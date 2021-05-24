@@ -3,7 +3,7 @@ FROM registry.access.redhat.com/ubi8/ubi-minimal:latest
 ARG IBMCLOUD_VERSION=1.4.0
 ARG ARCH=ppc64le
 ARG TERRAFORM=0.13.6
-ARG TF_PPC64LE_PROVIDERS=v0.8
+ARG TF_PPC64LE_PROVIDERS=v0.9
 
 LABEL maintaner="Rafael Peria de Sene - rpsene@br.ibm.com "
 LABEL tf_version="$TERRAFORM"
