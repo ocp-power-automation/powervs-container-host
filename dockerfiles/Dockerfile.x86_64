@@ -17,5 +17,7 @@ RUN microdnf update && \
     ibmcloud update --force && \
     rm -rf ./Bluemix_CLI/ ./IBM_Cloud_CLI_"$IBM_CLOUD_VERSION"_"$ARCH".tar.gz && \
     ibmcloud plugin install power-iaas && \
+    ibmcloud plugin install vpc-infrastructure && \
+    ibmcloud plugin install cloud-object-storage && \
     yum-config-manager --add-repo https://rpm.releases.hashicorp.com/RHEL/hashicorp.repo && microdnf install -y "$TERRAFORM_VERSION" && \
     terraform --version && ibmcloud --version
