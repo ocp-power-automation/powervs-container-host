@@ -23,6 +23,8 @@ RUN microdnf update && \
     ibmcloud update --force && \
     rm -rf ./Bluemix_CLI/ ./IBM_Cloud_CLI_"$IBMCLOUD_VERSION"_"$ARCH".tar.gz && \
     ibmcloud plugin install power-iaas && \
+    ibmcloud plugin install vpc-infrastructure && \
+    ibmcloud plugin install cloud-object-storage && \
     wget -O /usr/bin/terraform https://oplab9.parqtec.unicamp.br/pub/ppc64el/terraform/terraform-"$TERRAFORM" && \
     chmod +x /usr/bin/terraform && \
     mkdir -p /root/.terraform.d/plugins && \
