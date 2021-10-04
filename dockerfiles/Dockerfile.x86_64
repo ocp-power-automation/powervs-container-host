@@ -1,6 +1,6 @@
 FROM registry.access.redhat.com/ubi8/ubi-minimal:latest
 
-ARG IBM_CLOUD_VERSION=1.5.1
+ARG IBM_CLOUD_VERSION=2.1.1
 ARG ARCH=amd64
 ARG TERRAFORM_VERSION=terraform-0.13.7-1.x86_64
 
@@ -19,5 +19,6 @@ RUN microdnf update && \
     ibmcloud plugin install power-iaas && \
     ibmcloud plugin install vpc-infrastructure && \
     ibmcloud plugin install cloud-object-storage && \
+    ibmcloud plugin update --all -f && \
     yum-config-manager --add-repo https://rpm.releases.hashicorp.com/RHEL/hashicorp.repo && microdnf install -y "$TERRAFORM_VERSION" && \
     terraform --version && ibmcloud --version
