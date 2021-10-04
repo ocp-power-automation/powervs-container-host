@@ -1,6 +1,6 @@
 FROM registry.access.redhat.com/ubi8/ubi-minimal:latest
 
-ARG IBMCLOUD_VERSION=1.4.0
+ARG IBMCLOUD_VERSION=2.1.1
 ARG ARCH=ppc64le
 ARG TERRAFORM=0.13.6
 ARG TF_PPC64LE_PROVIDERS=v0.9
@@ -12,7 +12,7 @@ LABEL ibmcloud_version="$IBMCLOUD_VERSION"
 
 COPY /files/terraformrc.ppc64le  /root/.terraformrc
 
-RUN > /etc/resolv.conf && echo "nameserver 1.1.1.1" >> /etc/resolv.conf
+RUN > /etc/resolv.conf && echo "nameserver 9.9.9.9" >> /etc/resolv.conf
 
 # Install basic packages, ibmcloud, power-iaas and terraform
 RUN microdnf update && \
@@ -30,4 +30,5 @@ RUN microdnf update && \
     mkdir -p /root/.terraform.d/plugins && \
     wget https://github.com/ocp-power-automation/terraform-providers-power/releases/download/$TF_PPC64LE_PROVIDERS/archive.zip && \
     unzip ./archive.zip -d /root/.terraform.d/plugins && \
+    ibmcloud plugin update --all -f && \
     terraform --version && ibmcloud --version 
