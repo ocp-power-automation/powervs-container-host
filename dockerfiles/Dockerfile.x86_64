@@ -8,17 +8,6 @@ LABEL maintaner="Rafael Peria de Sene - rpsene@br.ibm.com "
 LABEL tf_version="$TERRAFORM"
 LABEL ibmcloud_version="$IBMCLOUD_VERSION"
 
-# Install basic packages, ibmcloud, power-iaas and terraform
-RUN microdnf update && \
-    microdnf install -y git wget tar unzip yum-utils vi iputils jq findutils && \
-    wget https://download.clis.cloud.ibm.com/ibm-cloud-cli/"$IBM_CLOUD_VERSION"/IBM_Cloud_CLI_"$IBM_CLOUD_VERSION"_"$ARCH".tar.gz && \
-    tar -xvzf ./IBM_Cloud_CLI_"$IBM_CLOUD_VERSION"_"$ARCH".tar.gz && \
-    chmod +x ./Bluemix_CLI/install && ./Bluemix_CLI/install && \
-    ibmcloud update --force && \
-    rm -rf ./Bluemix_CLI/ ./IBM_Cloud_CLI_"$IBM_CLOUD_VERSION"_"$ARCH".tar.gz && \
-    ibmcloud plugin install power-iaas && \
-    ibmcloud plugin install vpc-infrastructure && \
-    ibmcloud plugin install cloud-object-storage && \
-    ibmcloud plugin update --all -f && \
-    yum-config-manager --add-repo https://rpm.releases.hashicorp.com/RHEL/hashicorp.repo && microdnf install -y "$TERRAFORM_VERSION" && \
-    terraform --version && ibmcloud --version
+COPY /files/x86_64.sh  /root/x86_64.sh
+
+RUN chmod +x /root/x86_64.sh; /root/x86_64.sh
