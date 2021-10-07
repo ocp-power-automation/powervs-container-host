@@ -24,10 +24,7 @@ wget "https://github.com/ocp-power-automation/terraform-providers-power/releases
 
 unzip ./archive.zip -d /root/.terraform.d/plugins
 
-#curl -sL https://raw.githubusercontent.com/ocp-power-automation/openshift-install-power/master/openshift-install-powervs -o /usr/local/bin/openshift-install-powervs
-
-git clone https://github.com/rpsene/openshift-install-power.git
-mv ./openshift-install-power/openshift-install-powervs /usr/local/bin/
+curl -sL https://raw.githubusercontent.com/ocp-power-automation/openshift-install-power/master/openshift-install-powervs -o /usr/local/bin/openshift-install-powervs
 
 chmod +x /usr/local/bin/openshift-install-powervs
 
